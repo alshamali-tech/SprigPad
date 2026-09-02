@@ -69,7 +69,7 @@
 
 @theme {
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-  --font-display: "Avenir Next", "Segoe UI Variable Display", Futura, ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI Variable Display", Futura, ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "JetBrains Mono", Menlo, Consolas, monospace;
 }
 
@@ -278,6 +278,65 @@ body {
   background: var(--surface);
   color: var(--muted);
   white-space: nowrap;
+}
+
+/* ---------- landing: live demo nodes ---------- */
+.demo-node {
+  cursor: pointer;
+}
+.demo-node .demo-ring {
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+.demo-node:hover .demo-ring,
+.demo-node:focus-visible .demo-ring {
+  opacity: 1;
+}
+.demo-inner {
+  transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.demo-node:hover .demo-inner,
+.demo-node:focus-visible .demo-inner {
+  transform: scale(1.05);
+}
+
+/* ---------- landing: ambient branch lines ---------- */
+.hero-branches path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: bp-draw 1.6s cubic-bezier(0.5, 0, 0.2, 1) both;
+}
+.hero-branches path:nth-child(2) {
+  animation-delay: 0.25s;
+}
+.hero-branches path:nth-child(3) {
+  animation-delay: 0.5s;
+}
+.hero-branches circle {
+  animation: bp-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 1s;
+}
+.hero-branches circle:nth-of-type(2) {
+  animation-delay: 1.15s;
+}
+.hero-branches circle:nth-of-type(3) {
+  animation-delay: 1.3s;
+}
+
+/* ---------- landing: shortcut strip reacts to real keystrokes ---------- */
+.kbd-row {
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+  border-radius: 8px;
+}
+.kbd-row.is-flash {
+  background: var(--accent-soft);
+}
+.kbd-row.is-flash .kbd {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--surface);
 }
 
 /* node transitions inside the editor canvas */

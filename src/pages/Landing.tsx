@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { MapNode } from "../lib/model";
 import { NODE_COLORS, ROOT_STYLE, defaultStyle, makeNode } from "../lib/model";
 import { addChild, countNodes } from "../lib/mapEngine";
@@ -158,34 +158,62 @@ function LiveDemo() {
             />
           ))}
           {[...layout.positions.values()].map((p) => (
-            <g key={p.id} onClick={() => clickNode(p.id)} className="cursor-pointer anim-pop" style={{ transformOrigin: `${p.x + p.w / 2}px ${p.y + p.h / 2}px` }}>
-              <rect
-                x={p.x}
-                y={p.y}
-                width={p.w}
-                height={p.h}
-                rx={p.depth === 0 ? 12 : 9}
-                fill={p.node.style.bg}
-                stroke={p.node.style.border ?? "transparent"}
-                strokeWidth={1.5}
-              >
-                <title>Click to grow a branch</title>
-              </rect>
-              {p.lines.map((line, i) => (
-                <text
-                  key={i}
-                  x={p.x + p.w / 2}
-                  y={p.y + p.h / 2 + (i - (p.lines.length - 1) / 2) * (p.depth === 0 ? 24 : 19)}
-                  textAnchor="middle"
-                  dominantBaseline="middle"
-                  fontSize={p.depth === 0 ? 17 : p.depth === 1 ? 14 : 13}
-                  fontWeight={p.depth <= 1 ? 700 : 500}
-                  fill={p.node.style.fg}
-                  fontFamily="ui-sans-serif, system-ui, sans-serif"
+            <g
+              key={p.id}
+              className="demo-node anim-pop"
+              tabIndex={0}
+              role="button"
+              aria-label={`${p.node.text} — grow a branch`}
+              onClick={() => clickNode(p.id)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  clickNode(p.id);
+                }
+              }}
+            >
+              <g className="demo-inner">
+                <rect
+                  className="demo-ring"
+                  x={p.x - 4.5}
+                  y={p.y - 4.5}
+                  width={p.w + 9}
+                  height={p.h + 9}
+                  rx={(p.depth === 0 ? 12 : 9) + 4}
+                  fill="none"
+                  stroke="var(--accent)"
+                  strokeWidth={2}
+                  strokeDasharray="5 4"
+                  strokeLinecap="round"
+                />
+                <rect
+                  x={p.x}
+                  y={p.y}
+                  width={p.w}
+                  height={p.h}
+                  rx={p.depth === 0 ? 12 : 9}
+                  fill={p.node.style.bg}
+                  stroke={p.node.style.border ?? "transparent"}
+                  strokeWidth={1.5}
                 >
-                  {line}
-                </text>
-              ))}
+                  <title>Click to grow a branch</title>
+                </rect>
+                {p.lines.map((line, i) => (
+                  <text
+                    key={i}
+                    x={p.x + p.w / 2}
+                    y={p.y + p.h / 2 + (i - (p.lines.length - 1) / 2) * (p.depth === 0 ? 24 : 19)}
+                    textAnchor="middle"
+                    dominantBaseline="middle"
+                    fontSize={p.depth === 0 ? 17 : p.depth === 1 ? 14 : 13}
+                    fontWeight={p.depth <= 1 ? 700 : 500}
+                    fill={p.node.style.fg}
+                    fontFamily="ui-sans-serif, system-ui, sans-serif"
+                  >
+                    {line}
+                  </text>
+                ))}
+              </g>
             </g>
           ))}
         </svg>
@@ -244,7 +272,16 @@ export default function Landing() {
 
       {/* ---------- hero ---------- */}
       <section className="noise relative overflow-hidden">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 pt-14 pb-20 lg:pt-20 lg:pb-28 grid lg:grid-cols-[1.05fr_1fr] gap-12 lg:gap-10 items-center">
+        {/* ambient branch lines, characteristic of the subject */}
+        <svg className="hero-branches absolute inset-0 h-full w-full pointer-events-none" viewBox="0 0 1200 760" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <path d="M-40 400 C 180 380, 260 260, 430 220" stroke="var(--line-strong)" strokeWidth="2" pathLength={1} opacity="0.55" />
+          <path d="M-40 400 C 200 420, 300 520, 520 560" stroke="var(--line-strong)" strokeWidth="2" pathLength={1} opacity="0.55" />
+          <path d="M430 220 C 540 190, 620 120, 780 96" stroke="var(--line-strong)" strokeWidth="2" pathLength={1} opacity="0.4" />
+          <circle cx="430" cy="220" r="7" fill="var(--accent)" opacity="0.5" />
+          <circle cx="520" cy="560" r="7" fill="var(--amber)" opacity="0.55" />
+          <circle cx="780" cy="96" r="6" fill="var(--line-strong)" opacity="0.7" />
+        </svg>
+        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 pt-14 pb-20 lg:pt-20 lg:pb-28 grid lg:grid-cols-[1.05fr_1fr] gap-12 lg:gap-10 items-center">
           <div>
             <p className="anim-fadeup font-mono text-[11px] sm:text-xs uppercase tracking-[0.18em] text-accent font-semibold">
               Offline-first mind mapping · no servers involved
@@ -460,20 +497,16 @@ export default function Landing() {
         </p>
       </section>
 
-      {/* ---------- shortcuts strip ---------- */}
+      {/* ---------- shortcuts strip (listens to your real keystrokes) ---------- */}
       <section className="border-y border-line bg-surface">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-14 reveal">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent font-semibold">Fluent in keystrokes</p>
-          <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">
-            {SHORTCUTS.slice(0, 9).map((s) => (
-              <div key={s.label} className="flex items-center justify-between gap-3 py-1.5 border-b border-line/60">
-                <span className="text-sm text-muted">{s.label}</span>
-                <span className="flex gap-1 shrink-0">
-                  {s.keys.map((k) => <Kbd key={k}>{k}</Kbd>)}
-                </span>
-              </div>
-            ))}
+          <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent font-semibold">Fluent in keystrokes</p>
+            <p className="flex items-center gap-1.5 text-xs text-faint">
+              <span className="h-1.5 w-1.5 rounded-full bg-ok anim-pulse-dot" /> go on — press the keys, this list listens
+            </p>
           </div>
+          <ShortcutStrip />
         </div>
       </section>
 
@@ -526,6 +559,72 @@ function FeatureTile({ className = "", icon, children }: { className?: string; i
     <div className={"rounded-xl border border-line bg-surface p-5 sm:p-6 shadow-card hover:shadow-lift hover:-translate-y-0.5 transition-all duration-300 " + className}>
       <div className="h-10 w-10 rounded-lg bg-accentsoft text-accent flex items-center justify-center">{icon}</div>
       <div className="mt-4">{children}</div>
+    </div>
+  );
+}
+
+/* ================= live shortcut strip ================= */
+const TOKEN_EXPAND: Record<string, string[]> = {
+  "↑↓": ["arrowup", "arrowdown"],
+  "←→↑↓": ["arrowleft", "arrowright", "arrowup", "arrowdown"],
+  del: ["delete", "backspace"],
+  space: [" "],
+};
+
+function rowTokens(keys: string[]): string[] {
+  let prefix = "";
+  let out: string[] = [""];
+  for (const raw of keys) {
+    if (raw === "⌘/Ctrl") { prefix += "mod+"; continue; }
+    if (raw === "⇧") { prefix += "shift+"; continue; }
+    if (raw === "Alt") { prefix += "alt+"; continue; }
+    const base = raw.toLowerCase();
+    const expanded = TOKEN_EXPAND[base] ?? [base];
+    out = out.flatMap((o) => expanded.map((t) => o + t));
+  }
+  return out.map((o) => prefix + o);
+}
+
+function pressToken(e: KeyboardEvent): string {
+  const k = e.key === " " ? " " : e.key.toLowerCase();
+  if (e.metaKey || e.ctrlKey) return `mod+${e.shiftKey ? "shift+" : ""}${k}`;
+  if (e.altKey) return `alt+${k}`;
+  return k;
+}
+
+function ShortcutStrip() {
+  const rows = useMemo(() => SHORTCUTS.slice(0, 9).map((s) => ({ ...s, tokens: rowTokens(s.keys) })), []);
+  const [flash, setFlash] = useState<number | null>(null);
+  const timer = useRef<number | null>(null);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const t = e.target as HTMLElement | null;
+      if (t && typeof t.closest === "function" && t.closest("input, textarea, select, [contenteditable=true]")) return;
+      const tok = pressToken(e);
+      const idx = rows.findIndex((r) => r.tokens.includes(tok));
+      if (idx === -1) return;
+      setFlash(idx);
+      if (timer.current) window.clearTimeout(timer.current);
+      timer.current = window.setTimeout(() => setFlash(null), 550);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      if (timer.current) window.clearTimeout(timer.current);
+    };
+  }, [rows]);
+
+  return (
+    <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-2">
+      {rows.map((s, i) => (
+        <div key={s.label} className={"kbd-row flex items-center justify-between gap-3 px-2 -mx-2 py-1.5 " + (flash === i ? "is-flash" : "")}>
+          <span className={"text-sm transition-colors " + (flash === i ? "text-accent font-medium" : "text-muted")}>{s.label}</span>
+          <span className="flex gap-1 shrink-0">
+            {s.keys.map((k) => <Kbd key={k}>{k}</Kbd>)}
+          </span>
+        </div>
+      ))}
     </div>
   );
 }
