@@ -3,7 +3,7 @@ import type { MapNode } from "../lib/model";
 import { NODE_COLORS, ROOT_STYLE, defaultStyle, makeNode } from "../lib/model";
 import { addChild, countNodes } from "../lib/mapEngine";
 import { edgePath, layoutMap } from "../lib/layoutEngine";
-import { href, useReveal } from "../hooks";
+import { href, useMediaQuery, useReveal } from "../hooks";
 import { KOFI_URL, BMC_URL, SHORTCUTS, APP_VERSION } from "../lib/model";
 import { Button, Kbd } from "../components/ui";
 import {
@@ -121,7 +121,10 @@ function demoTree(): MapNode {
 function LiveDemo() {
   const [root, setRoot] = useState<MapNode>(demoTree);
   const [adds, setAdds] = useState(0);
-  const layout = useMemo(() => layoutMap(root, "both"), [root]);
+  /* vertical tree on phones: keeps the demo legible in a narrow column */
+  const small = useMediaQuery("(max-width: 560px)");
+  const dir = small ? "down" : "both";
+  const layout = useMemo(() => layoutMap(root, dir), [root, dir]);
   const { bbox } = layout;
   const pad = 30;
   const count = countNodes(root);
@@ -148,7 +151,7 @@ function LiveDemo() {
           {layout.edges.map((e) => (
             <path
               key={e.from.id + e.to.id}
-              d={edgePath(e.from, e.to, "both", "bezier")}
+              d={edgePath(e.from, e.to, dir, "bezier")}
               fill="none"
               stroke="var(--line-strong)"
               strokeWidth={2}
@@ -618,8 +621,8 @@ function ShortcutStrip() {
   return (
     <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-2">
       {rows.map((s, i) => (
-        <div key={s.label} className={"kbd-row flex items-center justify-between gap-3 px-2 -mx-2 py-1.5 " + (flash === i ? "is-flash" : "")}>
-          <span className={"text-sm transition-colors " + (flash === i ? "text-accent font-medium" : "text-muted")}>{s.label}</span>
+        <div key={s.label} className={"kbd-row flex flex-wrap items-center justify-between gap-x-3 gap-y-1 px-2 -mx-2 py-1.5 " + (flash === i ? "is-flash" : "")}>
+          <span className={"min-w-0 text-sm transition-colors " + (flash === i ? "text-accent font-medium" : "text-muted")}>{s.label}</span>
           <span className="flex gap-1 shrink-0">
             {s.keys.map((k) => <Kbd key={k}>{k}</Kbd>)}
           </span>

@@ -142,7 +142,7 @@ function AppShell({ parts }: { parts: string[] }) {
       </a>
 
       {/* mobile top bar */}
-      <div className="lg:hidden shrink-0 h-13 border-b border-line bg-surface flex items-center px-2 gap-1 print-hide" style={{ height: 52 }}>
+      <div className="lg:hidden shrink-0 border-b border-line bg-surface flex items-center px-2 gap-1 print-hide pt-[env(safe-area-inset-top)]" style={{ height: "calc(52px + env(safe-area-inset-top))" }}>
         <button aria-label="Open menu" onClick={() => setMobileOpen(true)} className="h-10 w-10 inline-flex items-center justify-center rounded-lg text-muted hover:bg-sunken">
           <IMenuGlyph size={19} />
         </button>

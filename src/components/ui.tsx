@@ -75,7 +75,8 @@ export const Kbd = ({ children }: { children: ReactNode }) => <kbd className="kb
 export const Input = ({ className = "", ...rest }: InputHTMLAttributes<HTMLInputElement>) => (
   <input
     className={cn(
-      "w-full h-10 rounded-lg border border-line bg-surface px-3 text-sm text-ink placeholder:text-faint",
+      /* text-base on phones: 16px prevents iOS from zooming the page on focus */
+      "w-full h-10 rounded-lg border border-line bg-surface px-3 text-base sm:text-sm text-ink placeholder:text-faint",
       "focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/25 transition-all",
       className
     )}
@@ -86,7 +87,7 @@ export const Input = ({ className = "", ...rest }: InputHTMLAttributes<HTMLInput
 export const TextArea = ({ className = "", ...rest }: React.TextareaHTMLAttributes<HTMLTextAreaElement>) => (
   <textarea
     className={cn(
-      "w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink placeholder:text-faint min-h-[90px]",
+      "w-full rounded-lg border border-line bg-surface px-3 py-2 text-base sm:text-sm text-ink placeholder:text-faint min-h-[90px]",
       "focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/25 transition-all resize-y",
       className
     )}
@@ -256,7 +257,7 @@ export function ToastViewport() {
   const toasts = useUI((s) => s.toasts);
   const dismiss = useUI((s) => s.dismissToast);
   return (
-    <div className="fixed bottom-4 right-4 z-[100] flex flex-col gap-2 w-[min(92vw,360px)]" aria-live="polite" role="status">
+    <div className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-[max(1rem,env(safe-area-inset-right))] z-[100] flex flex-col gap-2 w-[min(92vw,360px)]" aria-live="polite" role="status">
       {toasts.map((t) => (
         <ToastCard key={t.id} id={t.id} kind={t.kind} title={t.title} body={t.body} actionLabel={t.actionLabel} onAction={t.onAction} onClose={() => dismiss(t.id)} />
       ))}

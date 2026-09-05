@@ -45,17 +45,17 @@ export default function SettingsPage() {
       {/* data */}
       <section className="mt-4 rounded-xl border border-line bg-surface shadow-card p-5">
         <h2 className="font-display font-bold text-lg flex items-center gap-2"><IDatabase size={18} className="text-accent" /> Data management</h2>
-        <div className="mt-4 grid sm:grid-cols-3 gap-3">
-          <div className="rounded-lg border border-line p-3.5">
-            <p className="font-mono text-[10px] uppercase tracking-widest text-faint">Maps stored</p>
-            <p className="font-display font-extrabold text-2xl mt-1 tabular-nums">{maps.length}</p>
+        <div className="mt-4 grid grid-cols-3 gap-2 sm:gap-3">
+          <div className="rounded-lg border border-line p-2.5 sm:p-3.5">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-faint">Maps</p>
+            <p className="font-display font-extrabold text-xl sm:text-2xl mt-1 tabular-nums">{maps.length}</p>
           </div>
-          <div className="rounded-lg border border-line p-3.5">
-            <p className="font-mono text-[10px] uppercase tracking-widest text-faint">Space used</p>
-            <p className="font-display font-extrabold text-2xl mt-1 tabular-nums">{storage.checked ? fmtBytes(storage.usage) : "…"}</p>
+          <div className="rounded-lg border border-line p-2.5 sm:p-3.5">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-faint">Space</p>
+            <p className="font-display font-extrabold text-xl sm:text-2xl mt-1 tabular-nums">{storage.checked ? fmtBytes(storage.usage) : "…"}</p>
           </div>
-          <div className="rounded-lg border border-line p-3.5">
-            <p className="font-mono text-[10px] uppercase tracking-widest text-faint">Persistence</p>
+          <div className="rounded-lg border border-line p-2.5 sm:p-3.5">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-faint">Persist</p>
             <p className="mt-1.5">
               {storage.persistent ? <Badge tone="ok"><ICheck size={11} /> granted</Badge> : <Badge tone="amber">best-effort</Badge>}
             </p>

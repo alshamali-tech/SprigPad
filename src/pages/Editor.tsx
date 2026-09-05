@@ -268,7 +268,7 @@ function EditorHeader({ onPresent, theme, online }: { onPresent: () => void; the
       <Dropdown
         align="right"
         trigger={
-          <Button size="sm" variant="secondary">
+          <Button size="sm" variant="secondary" aria-label="Export map">
             <IDownload size={15} /> <span className="hidden sm:inline">Export</span> <IChevronDown size={13} />
           </Button>
         }
@@ -507,7 +507,7 @@ function Canvas({ fitSignal, onContext }: { fitSignal: React.MutableRefObject<((
       </div>
 
       {/* zoom controls */}
-      <div className="print-hide absolute bottom-4 left-4 flex items-center rounded-xl border border-line bg-surface shadow-card overflow-hidden">
+      <div className="print-hide absolute bottom-[max(1rem,env(safe-area-inset-bottom))] left-4 flex items-center rounded-xl border border-line bg-surface shadow-card overflow-hidden">
         <IconBtn label="Zoom out" onClick={() => zoomBy(1 / 1.25)} className="rounded-none h-10 w-10"><IZoomOut size={17} /></IconBtn>
         <button className="h-10 px-2 font-mono text-xs text-muted hover:bg-sunken min-w-[52px]" onClick={() => { setView((v) => ({ ...v, zoom: 1 })); }} aria-label="Reset zoom to 100%">
           {Math.round(view.zoom * 100)}%
@@ -606,8 +606,9 @@ function NodeView({ p, isRoot, selected, editing, onSelect, onEdit, onContext }:
             }
           }}
           rows={Math.max(1, p.node.text.split("\n").length)}
-          className="w-full h-full resize-none text-center bg-black/10 rounded-md outline-none outline-2 outline-white/40 p-1"
-          style={{ color: s.fg, fontSize, fontWeight: s.bold || isRoot ? 700 : 500 }}
+          className="bp-node-edit w-full h-full resize-none text-center bg-black/10 rounded-md outline-none outline-2 outline-white/40 p-1"
+          /* on touch devices keep ≥16px so iOS doesn't zoom the whole canvas on focus */
+          style={{ color: s.fg, fontSize: window.matchMedia("(pointer: coarse)").matches ? Math.max(16, fontSize) : fontSize, fontWeight: s.bold || isRoot ? 700 : 500 }}
           aria-label="Edit node text"
         />
       ) : (
@@ -705,7 +706,7 @@ function ContextMenu({ ctx, close }: { ctx: { x: number; y: number; id: string }
   );
 
   return (
-    <div data-ctx-menu className="anim-pop fixed z-[80] w-[210px] rounded-xl border border-line bg-surface p-1.5 shadow-lift" style={{ left: x, top: y }} role="menu">
+    <div data-ctx-menu className="anim-pop fixed z-[80] w-[210px] max-h-[min(70vh,430px)] overflow-y-auto rounded-xl border border-line bg-surface p-1.5 shadow-lift" style={{ left: x, top: y }} role="menu">
       <Item label={<><IChildNode size={15} /> Add child <Kbd>Tab</Kbd></>} onClick={() => st.addChildTo(ctx.id)} />
       <Item label={<><ISiblingNode size={15} /> Add sibling <Kbd>↵</Kbd></>} onClick={() => st.addSiblingTo(ctx.id)} disabled={isRoot} />
       <Item label={<><IPencil size={14} /> Edit text <Kbd>F2</Kbd></>} onClick={() => st.setEditing(ctx.id)} />
@@ -889,11 +890,11 @@ function Presentation({ onExit }: { onExit: () => void }) {
 
   return (
     <div className="fixed inset-0 z-[85] bg-ink dark:bg-black text-paper flex flex-col" role="dialog" aria-modal="true" aria-label="Presentation mode">
-      <div className="h-14 px-4 flex items-center gap-3 border-b border-white/10 shrink-0">
-        <span className="font-mono text-xs text-white/60">{map.title}</span>
-        <span className="ml-auto font-mono text-xs text-white/60 tabular-nums">{i + 1} / {order.length}</span>
-        <button onClick={onExit} className="h-9 px-3 rounded-lg border border-white/15 text-sm text-white/80 hover:bg-white/10 transition-colors inline-flex items-center gap-2">
-          <IX size={15} /> Exit <Kbd>Esc</Kbd>
+      <div className="h-14 px-3 sm:px-4 flex items-center gap-2 sm:gap-3 border-b border-white/10 shrink-0">
+        <span className="font-mono text-xs text-white/60 min-w-0 truncate">{map.title}</span>
+        <span className="ml-auto shrink-0 font-mono text-xs text-white/60 tabular-nums">{i + 1} / {order.length}</span>
+        <button onClick={onExit} className="shrink-0 h-9 px-3 rounded-lg border border-white/15 text-sm text-white/80 hover:bg-white/10 transition-colors inline-flex items-center gap-2" aria-label="Exit presentation">
+          <IX size={15} /> Exit <span className="hidden sm:inline"><Kbd>Esc</Kbd></span>
         </button>
       </div>
       <div className="flex-1 flex items-center justify-center p-6 overflow-y-auto">
@@ -926,15 +927,15 @@ function Presentation({ onExit }: { onExit: () => void }) {
           )}
         </div>
       </div>
-      <div className="h-16 flex items-center justify-center gap-3 border-t border-white/10 shrink-0">
+      <div className="h-16 px-3 flex items-center justify-center gap-3 border-t border-white/10 shrink-0 pb-[env(safe-area-inset-bottom)]">
         <button
           onClick={() => setI((v) => Math.max(0, v - 1))}
           disabled={i === 0}
-          className="h-9 px-4 rounded-lg bg-white/10 text-white border border-white/15 text-sm font-medium hover:bg-white/20 transition-colors disabled:opacity-40 inline-flex items-center gap-1.5"
+          className="h-9 px-3 sm:px-4 rounded-lg bg-white/10 text-white border border-white/15 text-sm font-medium hover:bg-white/20 transition-colors disabled:opacity-40 inline-flex items-center gap-1.5"
         >
           <IChevronLeft size={15} /> Prev
         </button>
-        <div className="flex gap-1 max-w-[40vw] overflow-hidden">
+        <div className="hidden sm:flex gap-1 max-w-[40vw] overflow-hidden">
           {order.slice(Math.max(0, i - 6), i + 7).map((n, j) => (
             <span key={n.id} className={cn("h-1.5 rounded-full transition-all", j === Math.min(6, i) ? "w-5 bg-accent" : "w-1.5 bg-white/25")} />
           ))}

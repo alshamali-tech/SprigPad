@@ -204,7 +204,7 @@ export function DonateNudge() {
     setShow(false);
   };
   return (
-    <div className="fixed bottom-4 left-4 z-[95] w-[min(92vw,340px)] anim-toast rounded-xl border border-amber/40 bg-surface shadow-lift overflow-hidden">
+    <div className="fixed bottom-[max(5.5rem,env(safe-area-inset-bottom))] sm:bottom-[max(1rem,env(safe-area-inset-bottom))] left-4 z-[95] w-[min(92vw,340px)] anim-toast rounded-xl border border-amber/40 bg-surface shadow-lift overflow-hidden">
       <div className="h-1 bg-amber" />
       <div className="p-4">
         <p className="flex items-center gap-2 text-sm font-semibold text-ink">

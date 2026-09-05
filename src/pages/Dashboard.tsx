@@ -180,7 +180,7 @@ export default function Dashboard() {
         <Stat
           label="Backup status"
           value={
-            <span className={"inline-flex items-center gap-1.5 rounded-lg px-2 py-1 text-sm font-semibold " + (storage.incognito ? "bg-danger/10 text-danger" : "bg-ok/10 text-ok")}>
+            <span className={"inline-flex items-center gap-1.5 rounded-lg px-1.5 py-1 text-xs sm:text-sm font-semibold whitespace-nowrap " + (storage.incognito ? "bg-danger/10 text-danger" : "bg-ok/10 text-ok")}>
               <span className={"h-1.5 w-1.5 rounded-full " + (storage.incognito ? "bg-danger" : "bg-ok")} />
               {storage.incognito ? "private window" : "safe in browser"}
             </span>

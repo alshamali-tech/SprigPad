@@ -77,6 +77,34 @@ html {
   scroll-behavior: smooth;
 }
 
+/* no double-tap zoom delays on controls */
+button,
+a,
+[role="menuitem"],
+select,
+summary {
+  touch-action: manipulation;
+}
+
+/* real touch targets on touch devices (spec: 44px minimum) */
+@media (pointer: coarse) {
+  .h-9:is(button, a) {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  .h-8:is(button, a) {
+    min-height: 40px;
+  }
+  .h-10:is(button, a) {
+    min-height: 44px;
+  }
+  input,
+  textarea:not(.bp-node-edit),
+  select {
+    min-height: 44px;
+  }
+}
+
 body {
   background: var(--paper);
   color: var(--ink);
