@@ -215,7 +215,7 @@ export default function ImportExportPage() {
               <span className="flex items-center gap-1.5"><ICode size={13} className="text-accent" /> Markdown outlines</span>
             </div>
             <p className="text-[11px] text-faint mt-2.5 leading-relaxed">
-              Version rule: older BranchPad files are migrated forward automatically; files from a newer major version are rejected rather than risked.
+              Version rule: older SprigPad files are migrated forward automatically; files from a newer major version are rejected rather than risked.
             </p>
           </div>
         </section>

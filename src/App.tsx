@@ -29,7 +29,7 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { error: Error | 
             <p className="mt-2 text-sm text-muted leading-relaxed">Something threw an unexpected error. Your maps are safe in local storage — reloading almost always fixes it.</p>
             <p className="mt-3 font-mono text-[11px] text-faint break-all">{this.state.error.message}</p>
             <button onClick={() => { this.setState({ error: null }); window.location.hash = "/app"; window.location.reload(); }} className="mt-5 h-10 px-4 rounded-lg bg-accent text-white text-sm font-medium hover:bg-accentdeep transition-colors">
-              Reload BranchPad
+              Reload SprigPad
             </button>
           </div>
         </div>
@@ -118,9 +118,9 @@ function AppShell({ parts }: { parts: string[] }) {
   );
 
   const brand = (
-    <a href="#/" className={cn("flex items-center gap-2.5 px-4 h-14 border-b border-line shrink-0", isCollapsed && "justify-center px-0")} title="BranchPad home">
+    <a href="#/" className={cn("flex items-center gap-2.5 px-4 h-14 border-b border-line shrink-0", isCollapsed && "justify-center px-0")} title="SprigPad home">
       <Logo size={26} />
-      {!isCollapsed && <span className="font-display font-bold tracking-tight">BranchPad</span>}
+      {!isCollapsed && <span className="font-display font-bold tracking-tight">SprigPad</span>}
     </a>
   );
 
@@ -148,7 +148,7 @@ function AppShell({ parts }: { parts: string[] }) {
         </button>
         <a href="#/app" className="flex items-center gap-2 min-w-0">
           <Logo size={22} />
-          <span className="font-display font-bold text-sm tracking-tight truncate">BranchPad</span>
+          <span className="font-display font-bold text-sm tracking-tight truncate">SprigPad</span>
         </a>
         <span className="ml-auto font-mono text-[10px] text-faint pr-2">local-only</span>
       </div>
@@ -226,9 +226,9 @@ function FatalNoStorage() {
     <div className="min-h-screen bg-paper flex items-center justify-center p-6">
       <div className="max-w-md text-center rounded-xl border border-line bg-surface p-8 shadow-card">
         <Logo size={40} />
-        <h1 className="mt-4 font-display font-extrabold text-2xl">This browser can't run BranchPad</h1>
+        <h1 className="mt-4 font-display font-extrabold text-2xl">This browser can't run SprigPad</h1>
         <p className="mt-3 text-sm text-muted leading-relaxed">
-          BranchPad stores your maps in your browser's IndexedDB, and this browser doesn't support it (or has blocked it). Please use a
+          SprigPad stores your maps in your browser's IndexedDB, and this browser doesn't support it (or has blocked it). Please use a
           recent version of Chrome, Firefox, Safari or Edge.
         </p>
       </div>

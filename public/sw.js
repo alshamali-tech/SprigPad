@@ -1,5 +1,5 @@
-/* BranchPad service worker — stale-while-revalidate for same-origin GETs. */
-const CACHE = "branchpad-v1";
+/* SprigPad service worker — stale-while-revalidate for same-origin GETs. */
+const CACHE = "sprigpad-v1";
 
 self.addEventListener("install", (event) => {
   self.skipWaiting();

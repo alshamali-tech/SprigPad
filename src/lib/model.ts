@@ -42,11 +42,11 @@ export interface MapRecord extends MindMap {
   nodeCount: number;
 }
 
-export const APP_NAME = "BranchPad";
+export const APP_NAME = "SprigPad";
 export const APP_VERSION = "1.0.0";
 export const EXPORT_SCHEMA_VERSION = "1.0.0";
-export const KOFI_URL = "https://ko-fi.com/branchpad";
-export const BMC_URL = "https://buymeacoffee.com/branchpad";
+export const KOFI_URL = "https://ko-fi.com/sprigpad";
+export const BMC_URL = "https://buymeacoffee.com/sprigpad";
 export const MAX_NODES = 10000;
 export const UNDO_LIMIT = 50;
 export const AUTOSAVE_MS = 1600;

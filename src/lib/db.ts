@@ -3,11 +3,12 @@ import type { MapRecord, MindMap } from "./model";
 import { SYNC_CHANNEL } from "./model";
 import { countNodes } from "./mapEngine";
 
-class BranchPadDB extends Dexie {
+class SprigPadDB extends Dexie {
   maps!: Table<MapRecord, string>;
   meta!: Table<{ key: string; value: unknown }, string>;
 
   constructor() {
+    // Keep "branchpad" as the DB name for backward compatibility with existing user data
     super("branchpad");
     this.version(1).stores({
       maps: "id, updatedAt, title",
@@ -16,7 +17,7 @@ class BranchPadDB extends Dexie {
   }
 }
 
-export const db = new BranchPadDB();
+export const db = new SprigPadDB();
 
 export const dbSupported = (): boolean => {
   try {

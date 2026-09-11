@@ -18,13 +18,12 @@ export function PublicNav() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 h-16 flex items-center gap-6">
         <a href={href("/")} className="flex items-center gap-2.5 min-w-0">
           <Logo size={30} />
-          <span className="font-display font-bold text-lg tracking-tight">BranchPad</span>
+          <span className="font-display font-bold text-lg tracking-tight">SprigPad</span>
         </a>
         <nav className="hidden md:flex items-center gap-1 ml-4" aria-label="Main">
           {[
             ["Features", "features"],
             ["Your data", "data"],
-            ["Compare", "compare"],
             ["FAQ", "faq"],
           ].map(([label, id]) => (
             <button
@@ -56,7 +55,7 @@ export function PublicFooter() {
         <div>
           <a href={href("/")} className="flex items-center gap-2.5">
             <Logo size={28} />
-            <span className="font-display font-bold text-lg tracking-tight">BranchPad</span>
+            <span className="font-display font-bold text-lg tracking-tight">SprigPad</span>
           </a>
           <p className="text-sm text-muted mt-3 max-w-xs leading-relaxed">
             Free, offline-first mind mapping. Unlimited maps, every export format, and data that never leaves your browser.
@@ -95,9 +94,7 @@ export function PublicFooter() {
           <span className="font-mono">v{APP_VERSION}</span>
           <span>·</span>
           <span>No trackers. No cookies. No account.</span>
-          <span className="sm:ml-auto">
-            BranchPad is an independent tool, not affiliated with or endorsed by MindMeister, MeisterLabs or XMind.
-          </span>
+          <span className="sm:ml-auto">SprigPad · free forever · your data stays in your browser.</span>
         </div>
       </div>
     </footer>
@@ -233,12 +230,12 @@ function LiveDemo() {
 
 /* ================= FAQ ================= */
 const FAQS: [string, string][] = [
-  ["Is BranchPad really free?", "Yes — 100% free, forever. There is no premium tier for core features, no map limit, no export paywall and no watermark. If you'd like to support development, there's a Ko-fi, but it's never required and never nags."],
-  ["Where is my data stored?", "Only in your browser (IndexedDB + localStorage). BranchPad has no server for your content, no account system and no cloud sync. A downloaded .json file is your portable backup — it works on any device."],
+  ["Is SprigPad really free?", "Yes — 100% free, forever. There is no premium tier for core features, no map limit, no export paywall and no watermark. If you'd like to support development, there's a Ko-fi, but it's never required and never nags."],
+  ["Where is my data stored?", "Only in your browser (IndexedDB + localStorage). SprigPad has no server for your content, no account system and no cloud sync. A downloaded .json file is your portable backup — it works on any device."],
   ["What happens if I clear my browser data?", "Your maps are erased with it — we hold no copy and cannot recover anything. That's the trade for true privacy. Export a .json backup regularly (the app will remind you) and you can restore everything with one import."],
-  ["Can I import maps from other tools?", "Yes. BranchPad imports its own .json backups, OPML (used by many outliners), Markdown outlines, and FreeMind/Freeplane .mm files. Unsupported or corrupted files are rejected cleanly — your existing data is never touched."],
+  ["Can I import maps from other tools?", "Yes. SprigPad imports its own .json backups, OPML (used by many outliners), Markdown outlines, and FreeMind/Freeplane .mm files. Unsupported or corrupted files are rejected cleanly — your existing data is never touched."],
   ["Does it work offline?", "Fully. After the first load the app is cached by a service worker, and since there is no server to talk to, everything — creating, editing, exporting — keeps working with zero connection."],
-  ["Is this a MindMeister alternative?", "It can serve that role. BranchPad is an independent mind mapping tool that removes the things people paywall: map limits, export restrictions and mandatory accounts. We're not affiliated with or endorsed by MindMeister in any way."],
+  ["Is there a premium version?", "No. SprigPad is 100% free with all features included. There's no premium tier, no paywall, and no locked features. If you'd like to support development, donations are appreciated but never required."],
 ];
 
 function Faq() {
@@ -302,8 +299,8 @@ export default function Landing() {
               No limits. Works offline.
             </h1>
             <p className="anim-fadeup mt-6 text-base sm:text-lg text-muted leading-relaxed max-w-lg" style={{ animationDelay: "140ms" }}>
-              BranchPad is an open canvas for your thinking — unlimited maps, every export format included, and data that never leaves
-              your browser. A free alternative to MindMeister, minus the paywall.
+              SprigPad is an open canvas for your thinking — unlimited maps, every export format included, and data that never leaves
+              your browser. No paywalls, no limits, no account required.
             </p>
             <div className="anim-fadeup mt-8 flex flex-wrap items-center gap-3" style={{ animationDelay: "220ms" }}>
               <Button variant="primary" size="lg" onClick={() => (window.location.hash = "/app")}>
@@ -341,7 +338,7 @@ export default function Landing() {
       {/* ---------- features bento ---------- */}
       <section id="features" className="mx-auto max-w-6xl px-4 sm:px-6 py-20 lg:py-24">
         <div className="reveal max-w-2xl">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent font-semibold">Why BranchPad</p>
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent font-semibold">Why SprigPad</p>
           <h2 className="mt-3 font-display font-extrabold tracking-tight text-3xl sm:text-4xl">
             Everything paywalled elsewhere, <span className="text-accent">free here.</span>
           </h2>
@@ -413,7 +410,7 @@ export default function Landing() {
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent font-semibold">The storage contract</p>
             <h2 className="mt-3 font-display font-extrabold tracking-tight text-3xl sm:text-4xl">Your data has two homes. You hold the keys to both.</h2>
             <p className="mt-5 text-muted leading-relaxed max-w-md">
-              Most apps keep your work on their servers and rent it back to you. BranchPad inverts that: the browser is the database, and a
+              Most apps keep your work on their servers and rent it back to you. SprigPad inverts that: the browser is the database, and a
               plain file is the backup. No vendor lock-in because there is no vendor.
             </p>
             <div className="mt-6 flex flex-wrap gap-2">
@@ -435,70 +432,13 @@ export default function Landing() {
             ))}
             <div className="reveal rounded-xl border border-amber/40 bg-ambersoft p-5 text-sm leading-relaxed">
               <strong>The one honest warning:</strong> if you clear browser data without a backup, those maps are gone — we can't recover
-              what we never had. BranchPad reminds you to export, but the habit is yours.
+              what we never had. SprigPad reminds you to export, but the habit is yours.
             </div>
           </div>
         </div>
       </section>
 
-      {/* ---------- comparison ---------- */}
-      <section id="compare" className="mx-auto max-w-6xl px-4 sm:px-6 py-20 lg:py-24">
-        <div className="reveal max-w-2xl">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent font-semibold">Side by side</p>
-          <h2 className="mt-3 font-display font-extrabold tracking-tight text-3xl sm:text-4xl">BranchPad vs. the paywall.</h2>
-          <p className="mt-4 text-muted leading-relaxed">
-            Mind mapping is a decades-old technique, not a subscription service. Here's how the two compare.
-          </p>
-        </div>
-        <div className="reveal mt-10 overflow-x-auto rounded-xl border border-line shadow-card">
-          <table className="w-full min-w-[560px] text-sm bg-surface">
-            <thead>
-              <tr className="border-b border-line">
-                <th className="text-left font-mono text-[11px] uppercase tracking-wider text-faint px-5 py-4"> </th>
-                <th className="text-left px-5 py-4 bg-accentsoft/60">
-                  <span className="flex items-center gap-2 font-display font-bold text-base"><Logo size={20} /> BranchPad</span>
-                </th>
-                <th className="text-left font-display font-bold text-base px-5 py-4 text-muted">MindMeister (free tier)</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-line">
-              {[
-                ["Price", "$0 — forever", "$7.50–$19 / month for personal"],
-                ["Maps on the free plan", "Unlimited", "3"],
-                ["Export on the free plan", "All 6 formats included", "Removed for free users (June 2026)"],
-                ["Works offline", ["yes", "Fully, after first load"], ["no", "Requires connection"]],
-                ["Account required", ["yes", "None — open and go"], ["no", "Email sign-up"]],
-                ["Watermark on exports", ["yes", "None"], ["no", "On free exports"]],
-                ["Where your data lives", "Your browser + your files", "Their servers"],
-              ].map(([label, bp, mm]) => {
-                const bpArr = Array.isArray(bp) ? bp : ["yes", bp as string];
-                const mmArr = Array.isArray(mm) ? mm : ["no", mm as string];
-                return (
-                  <tr key={label as string} className="hover:bg-sunken/40 transition-colors">
-                    <td className="px-5 py-3.5 font-medium text-muted whitespace-nowrap">{label as string}</td>
-                    <td className="px-5 py-3.5 bg-accentsoft/40">
-                      <span className="flex items-start gap-2">
-                        <ICheck size={16} className="text-ok shrink-0 mt-0.5" />
-                        <span className="font-semibold">{bpArr[1]}</span>
-                      </span>
-                    </td>
-                    <td className="px-5 py-3.5">
-                      <span className="flex items-start gap-2 text-muted">
-                        <IX size={16} className="text-faint shrink-0 mt-0.5" />
-                        <span>{mmArr[1]}</span>
-                      </span>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-        <p className="reveal mt-3 text-xs text-faint">
-          Comparison based on MindMeister's published pricing and free-tier changes as of mid-2026. BranchPad is an independent tool — not
-          affiliated with, endorsed by, or connected to MindMeister or MeisterLabs.
-        </p>
-      </section>
+
 
       {/* ---------- shortcuts strip (listens to your real keystrokes) ---------- */}
       <section className="border-y border-line bg-surface">
@@ -531,7 +471,7 @@ export default function Landing() {
             <div>
               <h2 className="font-display font-extrabold tracking-tight text-2xl sm:text-3xl">Free forever. Funded by kindness.</h2>
               <p className="mt-3 text-sm sm:text-base text-muted leading-relaxed max-w-lg">
-                BranchPad has no investors to please and no data to sell. It's sustained by people who find it useful and toss a coffee's
+                SprigPad has no investors to please and no data to sell. It's sustained by people who find it useful and toss a coffee's
                 worth into the jar. Optional, guilt-free, no perks attached — that's the point.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">

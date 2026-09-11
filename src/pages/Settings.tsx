@@ -110,7 +110,7 @@ export default function SettingsPage() {
 
       {/* donate */}
       <section className="mt-4 rounded-xl border border-amber/40 bg-ambersoft p-5">
-        <h2 className="font-display font-bold text-lg flex items-center gap-2"><ICoffee size={18} className="text-amber" /> Support BranchPad</h2>
+        <h2 className="font-display font-bold text-lg flex items-center gap-2"><ICoffee size={18} className="text-amber" /> Support SprigPad</h2>
         <p className="text-sm text-muted mt-2 leading-relaxed max-w-xl">
           Why donate? Because free software survives on goodwill. Your tip funds hosting, coffee and the occasional weekend of deep work.
           It changes nothing in the app — no perks, no features, no guilt. That's the deal.
@@ -124,7 +124,7 @@ export default function SettingsPage() {
       {/* premium stub */}
       <section className="mt-4 rounded-xl border border-line bg-surface shadow-card p-5 opacity-90">
         <h2 className="font-display font-bold text-lg flex items-center gap-2">
-          BranchPad Pro <Badge tone="neutral">coming someday</Badge>
+          SprigPad Pro <Badge tone="neutral">coming someday</Badge>
         </h2>
         <p className="text-sm text-muted mt-1.5">If a premium tier ever exists, it will add optional niceties — never core features. Enter a key here when that day comes.</p>
         <div className="mt-3 flex gap-2">
@@ -143,7 +143,7 @@ export default function SettingsPage() {
           <p className="text-muted">Runs <span className="font-mono text-ink">100% in your browser</span></p>
         </div>
         <p className="mt-4 text-xs text-faint leading-relaxed">
-          BranchPad is an independent tool — not affiliated with, endorsed by, or connected to MindMeister, MeisterLabs or XMind.
+          SprigPad is an independent, free, and open-source tool.
           Read the <a className="underline hover:text-ink" href="#/privacy">privacy policy</a> and <a className="underline hover:text-ink" href="#/terms">terms</a>.
         </p>
       </section>

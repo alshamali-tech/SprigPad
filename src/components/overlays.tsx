@@ -14,7 +14,7 @@ export function WelcomeModal() {
     setBootFlags(false, useApp.getState().returningEmpty);
   };
   return (
-    <Modal open={open} onClose={close} title="Welcome to BranchPad">
+    <Modal open={open} onClose={close} title="Welcome to SprigPad">
       <div className="space-y-4 text-sm text-muted leading-relaxed">
         <p>
           <strong className="text-ink">Your maps live in this browser.</strong> Nothing is uploaded, ever — there is no server, no account,
@@ -75,7 +75,7 @@ export function ImportPromptModal() {
     <Modal open={open} onClose={close} title="Welcome back">
       <div className="space-y-4 text-sm text-muted leading-relaxed">
         <p>
-          You've used BranchPad here before, but this browser's cached copy of your maps is empty
+          You've used SprigPad here before, but this browser's cached copy of your maps is empty
           {daysAway !== null && daysAway >= 6 ? ` after ${daysAway} days away — some browsers (like Safari) clear storage after a week` : ""}.
         </p>
         <p className="text-ink font-medium">If you exported a backup file, import it to restore everything.</p>
@@ -117,7 +117,7 @@ export function StorageBanner() {
   if (nearFull) {
     return (
       <Banner tone="danger" onDismiss={dismiss}>
-        <span className="font-semibold">Storage nearly full.</span> Your browser may evict BranchPad data.{" "}
+        <span className="font-semibold">Storage nearly full.</span> Your browser may evict SprigPad data.{" "}
         <a href={href("/app/import-export")} className="underline font-semibold">
           Export your maps now
         </a>
@@ -208,7 +208,7 @@ export function DonateNudge() {
       <div className="h-1 bg-amber" />
       <div className="p-4">
         <p className="flex items-center gap-2 text-sm font-semibold text-ink">
-          <ICoffee size={17} className="text-amber" /> Enjoying BranchPad?
+          <ICoffee size={17} className="text-amber" /> Enjoying SprigPad?
         </p>
         <p className="text-xs text-muted mt-1.5 leading-relaxed">
           It's free forever — no ads, no premium core features. If it saved you time, a coffee on Ko-fi says thanks.

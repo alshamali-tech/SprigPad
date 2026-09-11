@@ -1,6 +1,6 @@
 {
-  "name": "BranchPad — Free Offline Mind Mapping",
-  "short_name": "BranchPad",
+  "name": "SprigPad — Free Offline Mind Mapping",
+  "short_name": "SprigPad",
   "description": "Unlimited mind maps. No account. No limits. Works offline. Your data stays in your browser.",
   "start_url": "/",
   "display": "standalone",

@@ -34,7 +34,7 @@ export function Pricing() {
       <div className="grid md:grid-cols-2 gap-4">
         <div className="rounded-xl border-2 border-accent bg-surface p-6 shadow-lift relative overflow-hidden">
           <span className="absolute top-4 right-4 font-mono text-[10px] uppercase tracking-widest px-2 py-1 rounded-md bg-ok/10 text-ok font-bold">current</span>
-          <h2 className="font-display font-extrabold text-2xl">BranchPad Free</h2>
+          <h2 className="font-display font-extrabold text-2xl">SprigPad Free</h2>
           <p className="font-display font-extrabold text-5xl mt-3">$0<span className="text-base font-semibold text-muted"> / forever</span></p>
           <ul className="mt-6 space-y-2.5 text-sm">
             {[
@@ -55,7 +55,7 @@ export function Pricing() {
           <div className="rounded-xl border border-amber/40 bg-ambersoft p-6">
             <h2 className="font-display font-bold text-lg flex items-center gap-2"><ICoffee size={18} className="text-amber" /> Tip jar</h2>
             <p className="text-sm text-muted mt-2 leading-relaxed">
-              If BranchPad earned its place in your workflow, a coffee keeps the lights on. A gift, not a purchase — nothing unlocks,
+              If SprigPad earned its place in your workflow, a coffee keeps the lights on. A gift, not a purchase — nothing unlocks,
               because nothing is locked.
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
@@ -77,7 +77,7 @@ export function Pricing() {
         </div>
       </div>
       <Section h="The fine print">
-        <p>Donations are voluntary gifts processed by Ko-fi / Buy Me a Coffee — BranchPad never sees your payment details and gives nothing in exchange. That's deliberate.</p>
+        <p>Donations are voluntary gifts processed by Ko-fi / Buy Me a Coffee — SprigPad never sees your payment details and gives nothing in exchange. That's deliberate.</p>
       </Section>
     </PageShell>
   );
@@ -89,13 +89,13 @@ export function Privacy() {
     <PageShell eyebrow="Legal" title="Privacy policy">
       <p className="font-mono text-xs text-faint">Last updated: January 2026 · The short version: we collect nothing, because we can't.</p>
       <Section h="1. What we collect">
-        <p><strong className="text-ink">Nothing.</strong> BranchPad has no server for your content, no account system, no cookies, no analytics, no telemetry, no third-party scripts and no advertising identifiers. Visiting the site transfers only the static files needed to render it.</p>
+        <p><strong className="text-ink">Nothing.</strong> SprigPad has no server for your content, no account system, no cookies, no analytics, no telemetry, no third-party scripts and no advertising identifiers. Visiting the site transfers only the static files needed to render it.</p>
       </Section>
       <Section h="2. Where your data lives">
         <p>Your mind maps are stored exclusively in your own browser using IndexedDB and localStorage. Exported files are written to your device through your browser's normal download mechanism. We never receive, store, mirror or back up your content.</p>
       </Section>
       <Section h="3. Your controls">
-        <p>Export everything (Settings → Data management), import backups, or erase all local data with one confirmed click. Each of these actions is user-initiated; BranchPad never performs them on its own.</p>
+        <p>Export everything (Settings → Data management), import backups, or erase all local data with one confirmed click. Each of these actions is user-initiated; SprigPad never performs them on its own.</p>
       </Section>
       <Section h="4. Hosting">
         <p>The static site is served by a static hosting provider (Vercel/Cloudflare). They deliver files and see standard server logs (IP, user agent) as any web host does. They have no access to your maps, which never leave your device.</p>
@@ -104,7 +104,7 @@ export function Privacy() {
         <p>We hold no personal data and therefore act as neither controller nor processor of your content. If you clear your browser data, your maps are unrecoverable by anyone — including us. Regular .json exports are the intended backup path.</p>
       </Section>
       <Section h="6. Children">
-        <p>BranchPad is a general-audience tool that collects no data from anyone, children included.</p>
+        <p>SprigPad is a general-audience tool that collects no data from anyone, children included.</p>
       </Section>
     </PageShell>
   );
@@ -116,10 +116,10 @@ export function Terms() {
     <PageShell eyebrow="Legal" title="Terms of service">
       <p className="font-mono text-xs text-faint">Last updated: January 2026</p>
       <Section h="1. The deal">
-        <p>BranchPad is free software provided "as is", without warranty of any kind, express or implied. There is no account and no contract between us; using the tool is acceptance of these terms.</p>
+        <p>SprigPad is free software provided "as is", without warranty of any kind, express or implied. There is no account and no contract between us; using the tool is acceptance of these terms.</p>
       </Section>
       <Section h="2. Your data, your responsibility">
-        <p>You own your mind maps entirely; BranchPad claims no rights to your content. Because data lives only in your browser, you are solely responsible for backups. Export regularly — if browser storage is cleared without a backup file, the data is unrecoverable.</p>
+        <p>You own your mind maps entirely; SprigPad claims no rights to your content. Because data lives only in your browser, you are solely responsible for backups. Export regularly — if browser storage is cleared without a backup file, the data is unrecoverable.</p>
       </Section>
       <Section h="3. Donations">
         <p>Donations via Ko-fi or Buy Me a Coffee are voluntary, non-refundable gifts. They confer no goods, services, features or obligations.</p>
@@ -131,7 +131,7 @@ export function Terms() {
         <p>To the maximum extent permitted by law, total liability is limited to $0. The tool is unfit for no particular purpose and fit for no guaranteed one.</p>
       </Section>
       <Section h="6. Trademarks">
-        <p>"Mind mapping" is used as a generic descriptive term. BranchPad is an original, independent brand and is not affiliated with, endorsed by, or connected to MindMeister, MeisterLabs, XMind or any other product.</p>
+        <p>"Mind mapping" is used as a generic descriptive term. SprigPad is an original, independent brand.</p>
       </Section>
     </PageShell>
   );
