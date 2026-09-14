@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { fmtBytes, APP_VERSION, KOFI_URL, BMC_URL } from "../lib/model";
+import { fmtBytes, APP_VERSION, KOFI_URL, CONTACT_EMAIL } from "../lib/model";
 import { clearAll, requestPersist } from "../lib/db";
 import { exportAllJson } from "../lib/exporters";
 import { useApp, useUI } from "../store";
@@ -116,8 +116,7 @@ export default function SettingsPage() {
           It changes nothing in the app — no perks, no features, no guilt. That's the deal.
         </p>
         <div className="mt-4 flex flex-wrap gap-2">
-          <Button variant="amber" onClick={() => window.open(KOFI_URL, "_blank", "noopener")}><IHeart size={15} /> Ko-fi</Button>
-          <Button variant="secondary" onClick={() => window.open(BMC_URL, "_blank", "noopener")}>Buy Me a Coffee <IExternal size={13} /></Button>
+          <Button variant="amber" onClick={() => window.open(KOFI_URL, "_blank", "noopener")}><IHeart size={15} /> Support on Ko-fi</Button>
         </div>
       </section>
 
@@ -141,6 +140,16 @@ export default function SettingsPage() {
           <p className="text-muted">Storage <span className="font-mono text-ink">IndexedDB + files</span></p>
           <p className="text-muted">Tracking <span className="font-mono text-ok">none, verifiably</span></p>
           <p className="text-muted">Runs <span className="font-mono text-ink">100% in your browser</span></p>
+        </div>
+        <div className="mt-4 pt-4 border-t border-line">
+          <p className="text-sm text-muted mb-2">Found a bug or have a feature request?</p>
+          <a 
+            href={`mailto:${CONTACT_EMAIL}?subject=SprigPad Feedback`}
+            className="inline-flex items-center gap-2 text-sm text-accent hover:underline"
+          >
+            <span className="font-mono">{CONTACT_EMAIL}</span>
+            <IExternal size={13} />
+          </a>
         </div>
         <p className="mt-4 text-xs text-faint leading-relaxed">
           SprigPad is an independent, free, and open-source tool.

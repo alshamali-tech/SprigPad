@@ -3,7 +3,7 @@ import { href } from "../hooks";
 import { PublicFooter, PublicNav } from "./Landing";
 import { Button, Input } from "../components/ui";
 import { ICoffee, IHeart, ILock, ISparkle, ICheck, IArrowRight } from "../components/icons";
-import { BMC_URL, KOFI_URL } from "../lib/model";
+import { KOFI_URL } from "../lib/model";
 
 function PageShell({ eyebrow, title, children }: { eyebrow: string; title: string; children: React.ReactNode }) {
   return (
@@ -59,8 +59,7 @@ export function Pricing() {
               because nothing is locked.
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
-              <Button variant="amber" onClick={() => window.open(KOFI_URL, "_blank", "noopener")}><IHeart size={15} /> Ko-fi</Button>
-              <Button variant="secondary" onClick={() => window.open(BMC_URL, "_blank", "noopener")}>Buy Me a Coffee</Button>
+              <Button variant="amber" onClick={() => window.open(KOFI_URL, "_blank", "noopener")}><IHeart size={15} /> Support on Ko-fi</Button>
             </div>
           </div>
           <div className="rounded-xl border border-line bg-surface p-6 opacity-80">
@@ -77,7 +76,7 @@ export function Pricing() {
         </div>
       </div>
       <Section h="The fine print">
-        <p>Donations are voluntary gifts processed by Ko-fi / Buy Me a Coffee — SprigPad never sees your payment details and gives nothing in exchange. That's deliberate.</p>
+        <p>Donations are voluntary gifts processed by Ko-fi — SprigPad never sees your payment details and gives nothing in exchange. That's deliberate.</p>
       </Section>
     </PageShell>
   );
@@ -122,7 +121,7 @@ export function Terms() {
         <p>You own your mind maps entirely; SprigPad claims no rights to your content. Because data lives only in your browser, you are solely responsible for backups. Export regularly — if browser storage is cleared without a backup file, the data is unrecoverable.</p>
       </Section>
       <Section h="3. Donations">
-        <p>Donations via Ko-fi or Buy Me a Coffee are voluntary, non-refundable gifts. They confer no goods, services, features or obligations.</p>
+        <p>Donations via Ko-fi are voluntary, non-refundable gifts. They confer no goods, services, features or obligations.</p>
       </Section>
       <Section h="4. Future premium">
         <p>If an optional premium tier is ever introduced, it will be governed by separate terms. Core mind-mapping functionality remains free.</p>

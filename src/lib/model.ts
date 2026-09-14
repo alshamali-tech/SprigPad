@@ -45,8 +45,8 @@ export interface MapRecord extends MindMap {
 export const APP_NAME = "SprigPad";
 export const APP_VERSION = "1.0.0";
 export const EXPORT_SCHEMA_VERSION = "1.0.0";
-export const KOFI_URL = "https://ko-fi.com/sprigpad";
-export const BMC_URL = "https://buymeacoffee.com/sprigpad";
+export const KOFI_URL = "https://ko-fi.com/mammonalshamali";
+export const CONTACT_EMAIL = "mamoonalshamali@gmail.com";
 export const MAX_NODES = 10000;
 export const UNDO_LIMIT = 50;
 export const AUTOSAVE_MS = 1600;

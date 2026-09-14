@@ -4,7 +4,7 @@ import { NODE_COLORS, ROOT_STYLE, defaultStyle, makeNode } from "../lib/model";
 import { addChild, countNodes } from "../lib/mapEngine";
 import { edgePath, layoutMap } from "../lib/layoutEngine";
 import { href, useMediaQuery, useReveal } from "../hooks";
-import { KOFI_URL, BMC_URL, SHORTCUTS, APP_VERSION } from "../lib/model";
+import { KOFI_URL, CONTACT_EMAIL, SHORTCUTS, APP_VERSION } from "../lib/model";
 import { Button, Kbd } from "../components/ui";
 import {
   IChevronDown, ICoffee, IDatabase, IDownload, IHeart, IKeyboard, IShield, ISparkle,
@@ -81,11 +81,17 @@ export function PublicFooter() {
           <ul className="space-y-2 text-sm">
             <li><a className="text-muted hover:text-ink transition-colors" href={href("/privacy")}>Privacy policy</a></li>
             <li><a className="text-muted hover:text-ink transition-colors" href={href("/terms")}>Terms of service</a></li>
+          </ul>
+        </div>
+        <div>
+          <p className="font-mono text-[11px] uppercase tracking-wider text-faint mb-3">Contact</p>
+          <ul className="space-y-2 text-sm">
             <li>
-              <a className="text-muted hover:text-ink transition-colors inline-flex items-center gap-1" href={BMC_URL} target="_blank" rel="noopener">
-                Buy Me a Coffee <IExternal size={12} />
+              <a className="text-muted hover:text-ink transition-colors inline-flex items-center gap-1" href={`mailto:${CONTACT_EMAIL}`}>
+                {CONTACT_EMAIL}
               </a>
             </li>
+            <li className="text-xs text-faint">Bugs, features, feedback</li>
           </ul>
         </div>
       </div>
